@@ -1,6 +1,5 @@
 require 'node'
 
-
 describe Node do
   before :each do
     @node1 = Node.new(nil, 1, nil)
@@ -14,5 +13,17 @@ describe Node do
   
   it "holds data" do
     expect(@node1.data).to eq(1)
+  end
+
+  it "holds reference to previous node" do
+    expect(@node2.prev_node).to eq(@node1)
+    expect(@node3.prev_node).to eq(@node2)
+    expect(@node1.prev_node).to eq(@node3)
+  end
+
+  it "holds reference to next node" do
+    expect(@node1.next_node).to eq(@node2)
+    expect(@node2.next_node).to eq(@node3)
+    expect(@node3.next_node).to eq(@node1)
   end
 end

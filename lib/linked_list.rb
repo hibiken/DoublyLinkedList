@@ -25,6 +25,14 @@ class LinkedList
     end
   end
 
+  def unshift(data)
+    if empty? 
+      add_first_node(data)
+    else
+      prepend_to_existing_list(data)
+    end
+  end
+
   private
 
     def add_first_node(data)
@@ -39,6 +47,15 @@ class LinkedList
       new_node = Node.new(@first_node.prev_node, data, @first_node)
       # Update the reference of the first_node and previously last node
       @first_node.prev_node = new_node
+      new_node.prev_node.next_node = new_node
+      @length += 1
+    end
+
+    def prepend_to_existing_list(data)
+      new_node = Node.new(@first_node.prev_node, data, @first_node)
+      # Update the references
+      @first_node = new_node
+      new_node.next_node.prev_node = new_node
       new_node.prev_node.next_node = new_node
       @length += 1
     end

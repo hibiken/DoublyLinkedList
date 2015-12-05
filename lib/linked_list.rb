@@ -8,7 +8,7 @@ class LinkedList
     @first_node = nil
     unless seed_data.empty?
       seed_data.each do |data|
-        append(data)
+        push(data)
       end
     end
   end
@@ -17,7 +17,7 @@ class LinkedList
     @length == 0
   end
 
-  def append(data)
+  def push(data)
     if empty?
       add_first_node(data)
     else
@@ -38,7 +38,7 @@ class LinkedList
     def append_to_existing_list(data)
       new_node = Node.new(@first_node.prev_node, data, @first_node)
       # Update the reference of the first_node and previously last node
-      @first_node.next_node = new_node
+      @first_node.prev_node = new_node
       new_node.prev_node.next_node = new_node
       @length += 1
     end
